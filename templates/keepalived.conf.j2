@@ -66,7 +66,9 @@ vrrp_instance {{ name }} {
   state {{ instance.state }}
   virtual_router_id {{ instance.virtual_router_id }}
   priority {{ instance.priority }}
+  {% if instance.advert_int is defined %}
   advert_int {{ instance.advert_int }}
+  {% endif %}
   {% if instance.nopreempt is defined and instance.nopreempt | bool %}
   nopreempt                                        # Override VRRP RFC preemption default
   {% endif %}
